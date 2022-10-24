@@ -6,6 +6,9 @@ import Main from './components/Layouts/Main';
 import Blog from './components/Blog';
 import CoursesMain from './components/Courses/Courses-main';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './components/Login';
+import Register from './components/Register';
+import PageNotFound from './PageNotFound';
 
 
 function App() {
@@ -24,13 +27,26 @@ function App() {
         },
         {
           path: '/courses',
-          element: <CoursesMain></CoursesMain>
+          element: <CoursesMain></CoursesMain>,
+          loader: () => fetch('http://localhost:5000/courses')
+        },
+        {
+          path: '/login',
+          element: <Login></Login>
+        },
+        {
+          path: '/register',
+          element: <Register></Register>
+        },
+        {
+          path: '*',
+          element: <PageNotFound></PageNotFound>
         },
       ]
     }
   ])
   return (
-    <div className="App">
+    <div>
      <RouterProvider router={router}></RouterProvider>
     </div>
   );

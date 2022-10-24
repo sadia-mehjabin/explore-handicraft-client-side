@@ -9,29 +9,31 @@ const Headers = () => {
         <div>
             <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
-                <h3>Explore Handicraft World</h3>
+                <h5>Explore Handicraft World</h5>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <Link to={'/'}><button className='mx-2'>Home</button></Link>
+                    <Link to={'/'}><button className='mx-2 rounded'>Home</button></Link>
                     </li>
                     <li class="nav-item">
-                    <Link to={'/blog'}><button>Blog</button></Link>
+                    <Link to={'/blog'}><button className='mx-2 rounded'>Blog</button></Link>
                     </li>
                     <li class="nav-item">
-                    <Link to={'/Courses'}><button>Courses</button></Link>
+                    <Link to={'/Courses'}><button className='mx-2 rounded'>Courses</button></Link>
+                    </li>
+                    <li class="nav-item">
+                    <Link to={'/login'}><button className='mx-2 rounded'>Login</button></Link>
+                    </li>
+                    <li class="nav-item">
+                    <button className='mx-2 rounded'>Dark Theme</button>
                     </li>
                 </ul>
                 </div>
             </div>
             </nav>
-            {/* <Link to={'/'}>Home</Link>
-            <Link to={'/blog'}>Blog</Link>
-            <Link to={'/Courses'}>Courses</Link> */}
-            
         </div>
     );
 };
