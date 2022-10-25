@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const Headers = () => {
+    const {user} = useContext(AuthContext);
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-primary">
@@ -28,7 +28,7 @@ const Headers = () => {
                     <Link to={'/login'}><button className='mx-2 rounded'>Login</button></Link>
                     </li>
                     <li class="nav-item">
-                    <button className='mx-2 rounded'>Dark Theme</button>
+                    <button className='mx-2 rounded'>Dark Theme {user.displayName}</button>
                     </li>
                 </ul>
                 </div>
