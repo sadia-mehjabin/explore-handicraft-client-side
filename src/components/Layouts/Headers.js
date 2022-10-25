@@ -10,7 +10,6 @@ const Headers = () => {
         <div>
             <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
-                
                 <h5>Explore Handicraft World</h5>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,13 +32,13 @@ const Headers = () => {
                     <button className='mx-2 rounded'>Dark Theme </button>
                     </li>
                     
-                    {/* {
+                    {
                         user.photoURL?
                         <Image style={{height: "40px"}} roundedCircle src={user.photoURL}></Image>
                         : <FaUserAlt></FaUserAlt>
                     }  
                     <h6 className='m-2'>{user.displayName}</h6>
-                     */}
+                    
                 </ul>
                 </div>
             </div>

@@ -2,15 +2,16 @@ import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './contexts/AuthProvider';
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 
 const Login = () => {
 
-    const {providerLogin} = useContext(AuthContext);
-    const {signIn} = useContext(AuthContext);
+    const {providerLogin, signIn, githublogin} = useContext(AuthContext);
+
 
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleLoginSubmit = (event)=> {
         event.preventDefault();
@@ -34,6 +35,13 @@ const Login = () => {
         })
         .catch(error=> console.error(error))
     }
+    const handleGithubSignIn = ()=>{
+        githublogin(githubProvider)
+        .then(result=>{
+            const user = result.user;
+        })
+        .catch(error=> console.error(error))
+    }
 
     return (
         <div>
@@ -50,12 +58,13 @@ const Login = () => {
             </Form.Group>
             <p>don't have an account? <Link to='/register'>please register</Link></p>
             <button className='btn btn-primary w-100 p-2 m-2 rounded'>Log in</button>
-            <div>
-            
+             </Form>
+             <div>
+           
             <button onClick={handleGoogleSignIn} className='btn w-100 p-2 m-2 border-primary rounded'>Log in with google</button>
-            <button className='btn w-100 p-2 m-2 border-secondary rounded'>Log in with github</button>
+            <button onClick={handleGithubSignIn} className='btn w-100 p-2 m-2 border-secondary rounded'>Log in with github</button>
             </div>
-            </Form>
+            
             
            </div>
         </div>
