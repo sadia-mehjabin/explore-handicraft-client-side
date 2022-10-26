@@ -7,6 +7,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [id, setId] = useState();
 
     const providerLogin = (provider) => {
         return signInWithPopup(auth, provider);
@@ -22,6 +23,13 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    useEffect(() =>{
+        fetch('http://localhost:5000/courses')
+        .then(res => res.json())
+        .then(data => data.find(d => setId(d.id) ))
+        
+    })
+
     useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             console.log(currentUser);
@@ -31,7 +39,7 @@ const AuthProvider = ({children}) => {
             unsubscribe()
         }
     },[])
-    const authInfo = {user, providerLogin, createUser, signIn, githublogin};
+    const authInfo = {user, providerLogin, createUser, signIn, githublogin, id};
 
     return (
         <AuthContext.Provider value={authInfo}>

@@ -4,7 +4,6 @@ import CardGroup from 'react-bootstrap/CardGroup';
 
 const CourseCard = ({singleData}) => {
     const {name, id, img, duration} = singleData;
-    console.log(img)
     return (
         <div className='m-5'>
             <CardGroup>
