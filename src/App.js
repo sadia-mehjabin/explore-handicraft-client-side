@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import Register from './components/Register';
 import PageNotFound from './PageNotFound';
+import CourseCard from './components/Courses/CourseCard';
 
 
 
@@ -29,7 +30,13 @@ function App() {
         {
           path: '/courses',
           element: <CoursesMain></CoursesMain>,
-          loader: () => fetch('http://localhost:5000/courses')
+          loader: () => fetch('http://localhost:5000/courses'),
+          children: [
+            {
+              path: '/courses/',
+              element: <CourseCard></CourseCard>
+            }
+          ]
         },
         {
           path: '/login',
