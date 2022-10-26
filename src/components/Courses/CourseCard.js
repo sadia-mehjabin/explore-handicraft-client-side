@@ -3,29 +3,25 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 
 const CourseCard = ({singleData}) => {
-    const {name, id} = singleData;
+    const {name, id, img, duration} = singleData;
+    console.log(img)
     return (
-        <div className='d-flex'>
-          <h2 className='w-25'>hi</h2>
-            <div>
-            <div>
+        <div className='m-5'>
             <CardGroup>
-              <Card>
-                <Card.Img variant="top" src="holder.js/100px160" />
+              <Card className=''>
+                <Card.Img variant="top" className='w-50' src={img} />
                 <Card.Body>
-                  <Card.Title>Card title</Card.Title>
+                  <Card.Title>{name}</Card.Title>
                   <Card.Text>
                     This is a wider card with supporting text below as a natural lead-in
                     to additional content. This content is a little bit longer.
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
+                  <small className="text-muted">{duration}</small>
                 </Card.Footer>
               </Card>
             </CardGroup>
-            </div>
-            </div>
        </div>
     );
 };

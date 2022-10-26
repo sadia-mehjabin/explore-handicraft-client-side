@@ -30,13 +30,7 @@ function App() {
         {
           path: '/courses',
           element: <CoursesMain></CoursesMain>,
-          loader: () => fetch('http://localhost:5000/courses'),
-          children: [
-            {
-              path: '/courses/',
-              element: <CourseCard></CourseCard>
-            }
-          ]
+          loader: () => fetch('http://localhost:5000/courses')
         },
         {
           path: '/login',
