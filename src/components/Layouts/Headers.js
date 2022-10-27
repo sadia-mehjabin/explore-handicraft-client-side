@@ -33,12 +33,12 @@ const Headers = () => {
                     </li>
                     
                     {/* {
-                        user.photoURL?
+                        user?
                         <Image style={{height: "40px"}} roundedCircle src={user.photoURL}></Image>
                         : <FaUserAlt></FaUserAlt>
                     }  
-                    <h6 className='m-2'>{user.displayName}</h6> */}
-                    
+                    <h6 className='m-2'>{user.displayName}</h6>
+                     */}
                 </ul>
                 </div>
             </div>

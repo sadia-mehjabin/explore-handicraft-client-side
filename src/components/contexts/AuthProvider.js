@@ -7,38 +7,36 @@ const auth = getAuth(app);
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    // const [id, setId] = useState();
+    const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider);
     }
     const githublogin = (githubprovider) => {
+        setLoading(true);
         return signInWithPopup(auth, githubprovider);
     }
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     const signIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
-
-    // useEffect(() =>{
-    //     fetch('http://localhost:5000/courses')
-    //     .then(res => res.json())
-    //     .then(data => data.find(d => d))
-        
-    // })
 
     useEffect( ()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
             setUser(currentUser);
+            setLoading(false);
         });
         return () => {
             unsubscribe()
         }
     },[])
-    const authInfo = {user, providerLogin, createUser, signIn, githublogin};
+    const authInfo = {user, providerLogin, createUser, signIn, githublogin, loading};
 
     return (
         <AuthContext.Provider value={authInfo}>

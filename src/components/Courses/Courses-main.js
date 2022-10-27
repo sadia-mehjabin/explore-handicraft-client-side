@@ -7,7 +7,7 @@ const CoursesMain = () => {
     const data2 = useLoaderData();
 
     useEffect(() =>{
-        fetch('http://localhost:5000/courses')
+        fetch('https://explore-handicraft-server-sight.vercel.app/courses')
         .then(res => res.json())
         .then(data => setCategories(data))
         

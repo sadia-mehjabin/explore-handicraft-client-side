@@ -32,17 +32,17 @@ function App() {
         {
           path: '/courses',
           element: <CoursesMain></CoursesMain>,
-          loader: () => fetch('http://localhost:5000/courses')
+          loader: () => fetch('https://explore-handicraft-server-sight.vercel.app/courses')
         },
         {
           path: '/courses/:id',
           element: <CourseDetails></CourseDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+          loader: ({params}) => fetch(`https://explore-handicraft-server-sight.vercel.app/courses/${params.id}`)
         },
         {
-          path: '/courses/premium',
+          path: '/courses/:id',
           element: <PrivateRoute><CourseChechOut></CourseChechOut></PrivateRoute>,
-          // loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+          loader: ({params}) => fetch(`https://explore-handicraft-server-sight.vercel.app/courses/${params.id}`)
         },
         
         {
