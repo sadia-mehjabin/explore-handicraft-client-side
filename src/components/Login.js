@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate, } from 'react-router-dom';
 import { AuthContext } from './contexts/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
@@ -8,8 +8,11 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
 
     const {providerLogin, signIn, githublogin} = useContext(AuthContext);
-
-
+    const [error, setError] = useState();
+    const location = useLocation()
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+    console.log(from)
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -18,13 +21,15 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        
 
         signIn(email, password)
         .then(result=>{
             const user = result.user;
+            setError('');
+            navigate(from, {replace:true});
         })
-        .catch(error=> console.error(error))
+        .catch(error=> setError(error.message))
         form.reset()
     }
 
@@ -32,8 +37,9 @@ const Login = () => {
         providerLogin(googleProvider)
         .then(result=>{
             const user = result.user;
+            navigate(from, {replace:true});
         })
-        .catch(error=> console.error(error))
+        .catch(error=> setError(error.message))
     }
     const handleGithubSignIn = ()=>{
         githublogin(githubProvider)
@@ -41,6 +47,7 @@ const Login = () => {
             const user = result.user;
         })
         .catch(error=> console.error(error))
+        navigate(from, {replace:true});
     }
 
     return (
@@ -56,7 +63,8 @@ const Login = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name="password" placeholder="enter your password" required/>
             </Form.Group>
-            <p>don't have an account? <Link to='/register'>please register</Link></p>
+            <p>don't have an account? <Link to='/register'>please register</Link></p> 
+            <p className='text-danger'>{error}</p>
             <button className='btn btn-primary w-100 p-2 m-2 rounded'>Log in</button>
              </Form>
              <div>

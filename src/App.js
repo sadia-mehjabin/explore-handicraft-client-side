@@ -10,6 +10,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import PageNotFound from './PageNotFound';
 import CourseDetails from './components/Courses/CourseDetails';
+import CourseChechOut from './components/Courses/CourseChechOut';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 
 
 
@@ -36,6 +38,11 @@ function App() {
           path: '/courses/:id',
           element: <CourseDetails></CourseDetails>,
           loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+        },
+        {
+          path: '/courses/premium',
+          element: <PrivateRoute><CourseChechOut></CourseChechOut></PrivateRoute>,
+          // loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
         },
         
         {

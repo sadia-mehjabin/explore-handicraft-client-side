@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthProvider';
 import CourseCard from './CourseCard';
 
 const CoursesMain = () => {
-    // const {id} = useContext(AuthContext);
     const [categories, setCategories] = useState([])
     const data2 = useLoaderData();
 
