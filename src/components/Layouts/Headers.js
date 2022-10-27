@@ -32,13 +32,13 @@ const Headers = () => {
                     <button className='mx-2 rounded'>Dark Theme </button>
                     </li>
                     
-                    {/* {
+                    {
                         user?
                         <Image style={{height: "40px"}} roundedCircle src={user.photoURL}></Image>
                         : <FaUserAlt></FaUserAlt>
                     }  
                     <h6 className='m-2'>{user.displayName}</h6>
-                     */}
+                    
                 </ul>
                 </div>
             </div>
