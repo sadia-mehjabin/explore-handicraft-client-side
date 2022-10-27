@@ -35,8 +35,9 @@ function App() {
         {
           path: '/courses/:id',
           element: <CourseDetails></CourseDetails>,
-          loader: (params) => fetch(`http://localhost:5000/courses/${params.id}`),
+          loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
         },
+        
         {
           path: '/login',
           element: <Login></Login>

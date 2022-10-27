@@ -1,25 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import CourseCard from './CourseCard';
 
 const CoursesMain = () => {
-    const {id} = useContext(AuthContext);
-    const data = useLoaderData();
-    
-    
+    // const {id} = useContext(AuthContext);
+    const [categories, setCategories] = useState([])
+    const data2 = useLoaderData();
+
+    useEffect(() =>{
+        fetch('http://localhost:5000/courses')
+        .then(res => res.json())
+        .then(data => setCategories(data))
+        
+    })
+
     return (
         <div className='d-flex'>
             <div className='w-50 p-3'>
-            <Link to={`/courses/${id}`} className='m-2 rounded'>Paper craft</Link> <br></br>
-            <Link className='m-2 rounded'>Glass painting</Link> <br></br>
-            <Link className='m-2 rounded'>pottery</Link> <br></br>
-            <Link className='m-2 rounded'>swing</Link> <br></br>
-            <Link className='m-2 rounded'>Decorate with nature</Link> <br></br>
-            <Link className='m-2 rounded'>Tat shilpo</Link>
+            {
+                categories.map(category => 
+                    <p key={category.id}><Link to={`/courses/${category.id}`}>{category.name}</Link></p>
+                )
+            }
             </div>
             <div>
-            {data.map(singleData =>
+            {data2.map(singleData =>
              <CourseCard
             key={singleData.id}
             singleData={singleData}

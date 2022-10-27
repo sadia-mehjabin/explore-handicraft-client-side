@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-const CourseDetails = ({id}) => {
-    
-    
-    const loader = useLoaderData();
-    
+const CourseDetails = () => {
+    const course = useLoaderData()
     return (
         <div>
-            <h1>data{loader.length}
-            </h1>
+            <h1>data{course.length}</h1>
+            <button>Get premium access</button>
         </div>
     );
 };
