@@ -6,6 +6,7 @@ import { FaUserAlt, } from 'react-icons/fa';
 
 const Headers = () => {
     const {user} = useContext(AuthContext);
+    console.log(user)
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-primary">
@@ -31,14 +32,20 @@ const Headers = () => {
                     <li class="nav-item">
                     <button className='mx-2 rounded'>Dark Theme </button>
                     </li>
-                    
+                    <li class="nav-item">
                     {
                         user?
-                        <Image style={{height: "40px"}} roundedCircle src={user.photoURL}></Image>
+                        <Image style={{height: "40px"}} roundedCircle src={user?.photoURL}></Image>
                         : <FaUserAlt></FaUserAlt>
                     }  
-                    <h6 className='m-2'>{user.displayName}</h6>
-                    
+                    </li> 
+                    <li class="nav-item">
+                    {
+                        user &&
+                        <h6 className='m-2'>{user?.displayName}</h6>
+                        
+                    }  
+                    </li> 
                 </ul>
                 </div>
             </div>
