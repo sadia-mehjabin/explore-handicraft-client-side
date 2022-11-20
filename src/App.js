@@ -40,7 +40,7 @@ function App() {
           loader: ({params}) => fetch(`https://explore-handicraft-server-sight.vercel.app/courses/${params.id}`)
         },
         {
-          path: '/courses/:id',
+          path: '/courses/checkout/:id',
           element: <PrivateRoute><CourseChechOut></CourseChechOut></PrivateRoute>,
           loader: ({params}) => fetch(`https://explore-handicraft-server-sight.vercel.app/courses/${params.id}`)
         },

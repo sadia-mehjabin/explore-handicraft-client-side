@@ -7,7 +7,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
 
-    const {providerLogin, signIn, githublogin} = useContext(AuthContext);
+    const {user, providerLogin, signIn, githublogin, updateUser} = useContext(AuthContext);
     const [error, setError] = useState();
     const location = useLocation()
     const navigate = useNavigate();
@@ -18,6 +18,8 @@ const Login = () => {
 
     const handleLoginSubmit = (event)=> {
         event.preventDefault();
+        const name = user?.name;
+        const photoURL = user?.photoURL;
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -28,6 +30,15 @@ const Login = () => {
             const user = result.user;
             setError('');
             navigate(from, {replace:true});
+            const userInfo ={
+                displayName: name,
+                photoURL
+            }
+            updateUser(userInfo)
+            .then(() => {
+                console.log(user)
+            })
+            .catch(error => console.log(error))
         })
         .catch(error=> setError(error.message))
         form.reset()

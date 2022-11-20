@@ -5,7 +5,7 @@ import { Form } from 'react-bootstrap';
 import { AuthContext } from './contexts/AuthProvider';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUser} = useContext(AuthContext);
     const [error, setError] = useState();
 
     const handleSubmit = (event)=> {
@@ -15,12 +15,21 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-  
+        console.log(name, photoURL)
 
         createUser(email, password)
         .then(result=>{
             const user = result.user;
-            console.log(user)
+            
+            const userInfo ={
+                displayName: name,
+                photoURL: photoURL
+            }
+            updateUser(userInfo)
+            .then(() => {
+                console.log(user)
+            })
+            .catch(error => console.log(error))
         })
         .catch(error=> setError(error.message))
         form.reset()
@@ -34,11 +43,11 @@ const Register = () => {
            <Form className=' bg-light rounded p-3' onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
                 <Form.Label>name</Form.Label>
-                <Form.Control type="text" name="name" placeholder="Write your full name" />
+                <Form.Control type="text" name="name" placeholder="Write your full name" required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
                 <Form.Label>photoURL</Form.Label>
-                <Form.Control type="url" name="photoURL" placeholder="Enter your photo URL"/>
+                <Form.Control type="url" name="photoURL" placeholder="Enter your photo URL" required/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
                 <Form.Label>Email address</Form.Label>
@@ -48,6 +57,7 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" name="password" placeholder="enter your password" required/>
             </Form.Group>
+            <p>{error}</p>
             <p>Already have an account? <Link to={'/login'}>please log in</Link></p>
             <div>
             <button className='btn btn-primary w-100 p-2 m-2 rounded'>Register</button>

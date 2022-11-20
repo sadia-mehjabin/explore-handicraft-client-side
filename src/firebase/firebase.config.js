@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA5arLcDrSRH1bLd4ulbNTMXUva5biJh2M",
-  authDomain: "explore-handicraft-world.firebaseapp.com",
-  projectId: "explore-handicraft-world",
-  storageBucket: "explore-handicraft-world.appspot.com",
-  messagingSenderId: "1004325102062",
-  appId: "1:1004325102062:web:a3b23d9aa3784206756eff"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId
 };
 
 // Initialize Firebase

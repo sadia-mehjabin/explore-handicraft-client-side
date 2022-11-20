@@ -4,38 +4,30 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseChechOut = () => {
     const courseData = useLoaderData();
-    // const {name, img, duration} = courseData;
-    // console.log(courseData)
-  //   const [premiumAccess, setpremiumAccess] = useState([])
-
-  //   useEffect(() =>{
-  //     fetch('https://explore-handicraft-server-sight.vercel.app/courses')
-  //     .then(res => res.json())
-  //     .then(data => setpremiumAccess(data))
-      
-  // })
-  // console.log(premiumAccess)
+    const {name, img, duration, description} = courseData;
+   
     return (
-        <div>
-           <h1>checkout</h1> 
-           {/* <Card className=''>
-                <Card.Img variant="top" className='w-50' src={img} />
+        <div className='w-50 mx-auto'>
+           <h1 className='m-3 text-center'>Checkout Page of {name}</h1> 
+           <Card className=''>
+                <Card.Img variant="top" className='' src={img} />
                 <Card.Body>
                   <Card.Title>{name}</Card.Title>
+                  <h6 className='text-success'>price: $ 2000</h6>
+                  <h6 className='text-danger'>Start: from 23/4/2022 to 29/4/2022</h6>
+                  <h6><i>If you are interested then enroll now. and confirm sit for you. we have limited sit.</i></h6>
                   <Card.Text>
-                    
+                    <p><span className='text-danger'>description:</span> {description}</p>
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
                   <small className="text-muted">{duration}</small>
+                  <small className="text-muted mx-5">4 Days remaining</small>
                   
                 </Card.Footer>
-              </Card> */}
-              {/* {
-                premiumAccess.map(p => 
-                    <h1>{p.name}</h1>
-                )
-            } */}
+              </Card>
+              
+          
         </div>
     );
 };

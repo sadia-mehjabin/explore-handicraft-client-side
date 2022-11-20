@@ -2,8 +2,9 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <div>
-            <h2 className='bg-success p-3 text-center m-3'>this is home page</h2>
+        <div className='w-75 mx-auto'>
+            <h2 className='p-3 text-center'>Welcome To The Home Page</h2>
+            <img className='w-100' src="https://i.ibb.co/gSbvzKP/image.png" alt="" />
         </div>
     );
 };
