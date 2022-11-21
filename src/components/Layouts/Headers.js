@@ -12,7 +12,7 @@ import ReactTooltip from 'react-tooltip';
 
 const Headers = () => {
     const {user, logOut} = useContext(AuthContext);
-    console.log(user)
+    
     const handleLogOut = () => {
         logOut()
         .then(() => {
@@ -44,7 +44,7 @@ const Headers = () => {
                 {
                     user?.photoURL?
                     <>
-                    <Image data-tip='test' style={{height: "40px"}} roundedCircle src={user?.photoURL}></Image>
+                    <Image data-tip={user.displayName} style={{height: "40px"}} roundedCircle src={user?.photoURL}></Image>
                     
                     </>
                     : <FaUserAlt data-tip='test' className='m-2'></FaUserAlt>

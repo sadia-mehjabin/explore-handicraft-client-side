@@ -1,12 +1,16 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import { AuthContext } from './contexts/AuthProvider';
 
 const Register = () => {
     const {createUser, updateUser} = useContext(AuthContext);
     const [error, setError] = useState();
+    const location = useLocation()
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
 
     const handleSubmit = (event)=> {
         event.preventDefault();
@@ -15,12 +19,12 @@ const Register = () => {
         const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, photoURL)
+        
 
         createUser(email, password)
         .then(result=>{
             const user = result.user;
-            
+            navigate(from, {replace:true});
             const userInfo ={
                 displayName: name,
                 photoURL: photoURL
